@@ -23,6 +23,16 @@ class FileConverterApp:
           self.file_path = file
           self.path_entry.delete(0, tk.END)
           self.path_entry.insert(0, file)
+          
+    def convert_file(self):
+        if not self.file_path:
+            messagebox.showerror("Error", "Please select a file first")
+            return
+
+        target_ext = self.format_entry.get().lower().strip()
+        if not target_ext:
+            messagebox.showerror("Error", "Enter target format (e.g., png, jpg, txt)")
+            return
 
 if __name__ == "__main__":
     root = tk.Tk()
