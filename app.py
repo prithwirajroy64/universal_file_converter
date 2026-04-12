@@ -1,5 +1,7 @@
 import tkinter as tk
+import os
 from tkinter import filedialog
+from tkinter import filedialog, messagebox
 
 
 class FileConverterApp:
@@ -33,6 +35,9 @@ class FileConverterApp:
         if not target_ext:
             messagebox.showerror("Error", "Enter target format (e.g., png, jpg, txt)")
             return
+        
+        base, ext = os.path.splitext(self.file_path)
+        new_file = base + "." + target_ext
 
 if __name__ == "__main__":
     root = tk.Tk()
