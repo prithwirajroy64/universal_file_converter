@@ -2,6 +2,8 @@ import tkinter as tk
 import os
 from tkinter import filedialog
 from tkinter import filedialog, messagebox
+import shutil
+from PIL import Image
 
 
 class FileConverterApp:
@@ -38,6 +40,15 @@ class FileConverterApp:
         
         base, ext = os.path.splitext(self.file_path)
         new_file = base + "." + target_ext
+        
+        # IMAGE CONVERSION
+        if ext.lower() in ['.jpg', '.jpeg', '.png', '.bmp', '.gif']:
+            img = Image.open(self.file_path)
+            img.save(new_file)
+        # SIMPLE FILE COPY (for text-like formats)
+        else:
+            shutil.copy(self.file_path, new_file)
+        messagebox.showinfo("Success", f"File converted to {new_file}")
 
 if __name__ == "__main__":
     root = tk.Tk()
